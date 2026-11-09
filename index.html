@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>暁報 ― 朝の時事解説</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="暁報">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&display=swap" rel="stylesheet">
+<script>try{var m=localStorage.getItem("gyoho-mode");if(m==="dark"||m==="light")document.documentElement.setAttribute("data-mode",m)}catch(e){}</script>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F5F6F8;--ink:#1B1E26;--soft:#555C6B;--faint:#868C9B;--rule:#DCDFE6;
+  --ai:#22386A;--daiji:#22386A;--ai-tint:#E9EDF6;--warn:#8F5600;--warn-tint:#FBF0DD;
+  --mincho:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --gothic:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic UI",Meiryo,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111318;--ink:#E7E9EF;--soft:#A6ACBA;--faint:#777E8E;--rule:#2A2F3A;
+    --ai:#93ABE8;--daiji:#2B4580;--ai-tint:#1A2132;--warn:#E3A84E;--warn-tint:#2A2216;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111318;--ink:#E7E9EF;--soft:#A6ACBA;--faint:#777E8E;--rule:#2A2F3A;
+  --ai:#93ABE8;--daiji:#2B4580;--ai-tint:#1A2132;--warn:#E3A84E;--warn-tint:#2A2216;
+}
+:root[data-mode="light"]{
+  color-scheme:light;
+  --bg:#F5F6F8;--ink:#1B1E26;--soft:#555C6B;--faint:#868C9B;--rule:#DCDFE6;
+  --ai:#22386A;--daiji:#22386A;--ai-tint:#E9EDF6;--warn:#8F5600;--warn-tint:#FBF0DD;
+}
+:root[data-mode="dark"]{
+  color-scheme:dark;
+  --bg:#111318;--ink:#E7E9EF;--soft:#A6ACBA;--faint:#777E8E;--rule:#2A2F3A;
+  --ai:#93ABE8;--daiji:#2B4580;--ai-tint:#1A2132;--warn:#E3A84E;--warn-tint:#2A2216;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--gothic);font-size:16px;line-height:1.85;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:680px;margin:0 auto;padding-left:20px;padding-right:20px}
+a{color:var(--ai);text-underline-offset:3px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--ai);outline-offset:3px;border-radius:2px}
+p{margin:0 0 .9em}
+
+.mast{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding-top:26px;padding-bottom:22px}
+.daiji{font-family:var(--mincho);font-weight:800;font-size:40px;line-height:1.08;background:var(--daiji);color:var(--daiji-ink,#fff);padding:12px 10px;border-radius:2px;margin:0;text-align:center}
+.daiji span{display:block}
+.ed-date{font-family:var(--mincho);font-weight:800;font-size:clamp(30px,8vw,42px);line-height:1.15;margin:2px 0 6px;letter-spacing:.02em}
+.ed-sub{color:var(--soft);font-size:14px;margin:0 0 4px;line-height:1.6}
+.ed-sub span{display:block}
+.ed-stat{font-size:13px;color:var(--soft);margin:0;line-height:1.6}
+.ed-back{font-size:13px;margin:6px 0 0}
+.ed-warn{font-size:13px;margin:6px 0 0;color:var(--warn)}
+
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--rule)}
+.tabs .wrap{display:flex;align-items:center;gap:8px}
+.tab-links{display:flex;gap:2px;overflow-x:auto;flex:1 1 auto;min-width:0}
+.mode-btn{flex:0 0 auto;font:inherit;font-size:13px;font-weight:600;line-height:1.6;color:var(--soft);background:none;border:1px solid var(--rule);border-radius:999px;padding:3px 12px;cursor:pointer}
+.mode-btn[aria-pressed="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+.mode-btn:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
+.tabs a{flex:0 0 auto;padding:12px 14px 11px;color:var(--soft);text-decoration:none;font-size:15px;font-weight:600}
+.tabs a[aria-current="page"]{color:var(--ink);box-shadow:inset 0 -3px 0 var(--ai)}
+
+main{padding:6px 0 64px}
+.note{font-size:13.5px;color:var(--soft);margin:18px 0 4px}
+.msg{padding:48px 0;color:var(--soft)}
+.msg strong{display:block;color:var(--ink);font-family:var(--mincho);font-size:20px;margin-bottom:8px}
+
+.story{border-bottom:1px solid var(--rule)}
+.story summary{list-style:none;cursor:pointer;padding:22px 0 20px}
+.story summary::-webkit-details-marker{display:none}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:13px}
+.cat{color:var(--ai);font-weight:700}
+.when{color:var(--faint)}
+.badge{font-weight:600}
+.badge.ok{color:var(--ai)}
+.badge.partial{color:var(--warn)}
+.story h2{font-family:var(--mincho);font-weight:600;font-size:21px;line-height:1.5;margin:6px 0 8px}
+.lede{color:var(--soft);font-size:15px;margin:0}
+.toggle{display:inline-block;margin-top:10px;font-size:13.5px;font-weight:600;color:var(--ai)}
+.toggle::after{content:"解説を読む ＋"}
+.story[open] .toggle::after{content:"閉じる −"}
+.body{padding:0 0 30px}
+.points{list-style:none;margin:0;padding:14px 16px;background:var(--ai-tint);border-radius:6px}
+.points li{position:relative;padding-left:1.1em;font-size:15px;line-height:1.75}
+.points li+li{margin-top:8px}
+.points li::before{content:"";position:absolute;left:0;top:.72em;width:.42em;height:.42em;background:var(--ai);border-radius:50%}
+.body h3{font-family:var(--mincho);font-weight:600;font-size:17.5px;margin:28px 0 8px;line-height:1.4}
+.check{margin-top:28px;padding:12px 16px;border-left:3px solid var(--ai);background:var(--ai-tint);font-size:14px;line-height:1.75}
+.check.partial{border-color:var(--warn);background:var(--warn-tint)}
+.check b{display:block;margin-bottom:2px}
+.src{margin:18px 0 0;padding:0;list-style:none;font-size:13.5px;line-height:1.6}
+.src li{margin:0 0 8px}
+.src-h{font-size:13px;color:var(--faint);margin:20px 0 6px;font-weight:600}
+
+.hist-h{font-family:var(--mincho);font-weight:800;font-size:26px;margin:24px 0 4px}
+.hist-sub{color:var(--soft);font-size:14px;margin:0 0 8px}
+.hist{display:grid;grid-template-columns:76px 1fr;gap:4px 16px;padding:24px 0;border-bottom:1px solid var(--rule)}
+.year{font-family:var(--mincho);font-weight:800;font-size:28px;line-height:1.1;color:var(--ai)}
+.year small{display:block;font-family:var(--gothic);font-weight:500;font-size:11.5px;color:var(--faint);margin-top:6px;line-height:1.4}
+.hist h3{font-family:var(--mincho);font-weight:600;font-size:19px;line-height:1.5;margin:0 0 8px}
+.tie{margin:6px 0 0;padding:10px 14px;background:var(--ai-tint);border-radius:6px;font-size:14px;line-height:1.75}
+.tie b{color:var(--ai)}
+.hist .src{margin-top:12px}
+
+.arch{display:block;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--ink)}
+.arch-d{font-family:var(--mincho);font-weight:600;font-size:20px}
+.arch-d span{font-family:var(--gothic);font-size:13px;color:var(--faint);font-weight:500;margin-left:10px}
+.arch-t{margin:4px 0 0;color:var(--soft);font-size:14px;line-height:1.65}
+.arch[aria-current="true"] .arch-d::after{content:"表示中";font-family:var(--gothic);font-size:12px;font-weight:600;color:var(--ai);margin-left:10px}
+.foot{color:var(--faint);font-size:12.5px;margin-top:36px;line-height:1.7}
+
+@media (max-width:420px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .daiji{font-size:34px;padding:10px 8px}
+  .hist{grid-template-columns:1fr}
+  .year{font-size:24px}
+  .year small{display:inline;margin-left:8px}
+}
+</style>
+</head>
+<body>
+<header class="wrap mast" id="mast">
+  <h1 class="daiji" aria-label="暁報"><span>暁</span><span>報</span></h1>
+  <div>
+    <p class="ed-date" id="edDate">　</p>
+    <p class="ed-sub" id="edSub"></p>
+    <p class="ed-stat" id="edStat"></p>
+    <p class="ed-back" id="edBack" hidden><a href="#news">最新号へ戻る</a></p>
+    <p class="ed-warn" id="edWarn" hidden>今朝の号は作成できませんでした。logs フォルダの記録を確認してください。</p>
+  </div>
+</header>
+<nav class="tabs" aria-label="表示切り替え"><div class="wrap"><div class="tab-links" id="tabs"></div><button type="button" class="mode-btn" id="modeBtn" aria-pressed="false">ダーク</button></div></nav>
+<main class="wrap" id="main"></main>
+
+<script>
+(function(){
+  var DATA={"editions": [], "today": {}, "builtFor": "2026-11-09"};
+  var WD="日月火水木金土";
+  var state={toc:[],editions:{},view:"news",date:null,open:{}};
+  function $(id){return document.getElementById(id);}
+  function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+  function paras(parent,text){String(text||"").split(/\n+/).forEach(function(t){if(t.trim())parent.appendChild(el("p",null,t));});}
+  function parts(d){var a=d.split("-").map(Number);return{y:a[0],m:a[1],d:a[2],wd:WD[new Date(a[0],a[1]-1,a[2]).getDay()]};}
+  function compact(d){return d.replace(/-/g,"");}
+  function latest(){return state.toc[0]?state.toc[0].date:null;}
+  function isLatest(){return !state.date||state.date===latest();}
+  function today(){var t=new Date();return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");}
+
+  (DATA&&DATA.editions||[]).forEach(function(e){
+    e.today=(DATA.today&&DATA.today[e.date])||e.today||[];
+    state.editions[e.date]=e;
+  });
+  state.toc=Object.keys(state.editions).sort().reverse().map(function(d){
+    var e=state.editions[d];return{date:d,newsDate:e.newsDate,titles:(e.stories||[]).map(function(s){return s.title;})};
+  });
+
+  function parseHash(){
+    var h=location.hash.slice(1);
+    if(h==="archive")return{view:"archive"};
+    if(h==="history")return{view:"history"};
+    var m=h.match(/^(\d{4})(\d{2})(\d{2})(-history)?$/);
+    if(m)return{date:m[1]+"-"+m[2]+"-"+m[3],view:m[4]?"history":"news"};
+    return{view:"news"};
+  }
+  function hrefFor(view){
+    if(view==="archive")return"#archive";
+    if(isLatest())return view==="history"?"#history":"#news";
+    return"#"+compact(state.date)+(view==="history"?"-history":"");
+  }
+  function route(){
+    var r=parseHash(),pv=state.view,pd=state.date;
+    state.view=r.view;state.date=r.date||latest();
+    if(pv!==state.view||pd!==state.date)window.scrollTo(0,0);
+    render();
+  }
+  function msg(title,text){var d=el("div","msg");if(title)d.appendChild(el("strong",null,title));if(text)d.appendChild(el("span",null,text));return d;}
+
+  function renderMast(){
+    var d=state.date||today(),p=parts(d),ed=state.editions[d];
+    $("edDate").textContent=p.m+"月"+p.d+"日 "+p.wd+"曜日";
+    var sub=$("edSub");sub.replaceChildren(el("span",null,p.y+"年（令和"+(p.y-2018)+"年）"));
+    if(ed&&ed.newsDate){var n=parts(ed.newsDate);sub.appendChild(el("span",null,n.m+"月"+n.d+"日（"+n.wd+"）のニュースを収録"));}
+    var stat="";
+    if(ed&&ed.stories){
+      var ok=ed.stories.filter(function(s){return s.check&&s.check.level==="ok";}).length,pt=ed.stories.length-ok;
+      stat=ed.stories.length+"本　裏取り済み "+ok+"本"+(pt?"・一部未確認あり "+pt+"本":"");
+    }
+    $("edStat").textContent=stat;
+    $("edBack").hidden=isLatest()||state.view==="archive";
+    $("edWarn").hidden=!(DATA&&DATA.builtFor&&latest()&&latest()<DATA.builtFor&&isLatest());
+  }
+  function renderTabs(){
+    var t=$("tabs");t.replaceChildren();
+    [["news","ニュース"],["history","今日は何の日"],["archive","過去号"]].forEach(function(x){
+      var a=el("a",null,x[1]);a.href=hrefFor(x[0]);
+      if(state.view===x[0])a.setAttribute("aria-current","page");
+      t.appendChild(a);
+    });
+  }
+  function sources(list){
+    var ul=el("ul","src");
+    (list||[]).forEach(function(s){
+      if(!s||!/^https?:\/\//.test(s.url||""))return;
+      var li=el("li"),a=el("a",null,s.name||s.url);a.href=s.url;a.target="_blank";a.rel="noopener noreferrer";
+      li.appendChild(a);ul.appendChild(li);
+    });
+    return ul;
+  }
+  function renderNews(ed){
+    var f=document.createDocumentFragment();
+    if(ed.note)f.appendChild(el("p","note",ed.note));
+    (ed.stories||[]).forEach(function(s,i){
+      var key=ed.date+"/"+(s.id||i);
+      var det=el("details","story");
+      if(state.open[key])det.open=true;
+      det.addEventListener("toggle",function(){if(det.open)state.open[key]=1;else delete state.open[key];});
+      var sum=el("summary"),meta=el("div","meta");
+      meta.appendChild(el("span","cat",s.cat));
+      if(s.when)meta.appendChild(el("span","when",s.when));
+      var lv=s.check&&s.check.level==="ok"?"ok":"partial";
+      meta.appendChild(el("span","badge "+lv,lv==="ok"?"✓ 裏取り済み":"△ 一部未確認"));
+      sum.appendChild(meta);sum.appendChild(el("h2",null,s.title));sum.appendChild(el("p","lede",s.lede));sum.appendChild(el("span","toggle"));
+      det.appendChild(sum);
+      var b=el("div","body");
+      if(s.points&&s.points.length){var ul=el("ul","points");s.points.forEach(function(p){ul.appendChild(el("li",null,p));});b.appendChild(ul);}
+      [["background","背景と動機"],["precedents","似た過去の事例"],["history","関連する歴史"],["outlook","今後の注目点"]].forEach(function(x){
+        if(!s[x[0]])return;b.appendChild(el("h3",null,x[1]));paras(b,s[x[0]]);
+      });
+      if(s.check){var c=el("div","check "+lv);c.appendChild(el("b",null,lv==="ok"?"裏取りメモ":"裏取りメモ（一部未確認）"));c.appendChild(el("span",null,s.check.note));b.appendChild(c);}
+      if(s.sources&&s.sources.length){b.appendChild(el("p","src-h","出典"));b.appendChild(sources(s.sources));}
+      det.appendChild(b);f.appendChild(det);
+    });
+    f.appendChild(el("p","foot","各記事は複数の報道を照合して作成しています。過去事例と歴史は確立した史実にもとづく解説です。"));
+    return f;
+  }
+  function renderHistory(ed){
+    var f=document.createDocumentFragment(),p=parts(ed.date);
+    f.appendChild(el("h2","hist-h",p.m+"月"+p.d+"日の出来事"));
+    f.appendChild(el("p","hist-sub","政治・経済・外交を中心に選んでいます。"));
+    (ed.today||[]).forEach(function(t){
+      var row=el("article","hist"),y=el("div","year",t.year);
+      if(t.label)y.appendChild(el("small",null,t.label));
+      row.appendChild(y);
+      var c=el("div");c.appendChild(el("h3",null,t.title));paras(c,t.body);
+      if(t.tie){var tie=el("p","tie");tie.appendChild(el("b",null,"いまに通じる視点　"));tie.appendChild(document.createTextNode(t.tie));c.appendChild(tie);}
+      if(t.sources&&t.sources.length)c.appendChild(sources(t.sources));
+      row.appendChild(c);f.appendChild(row);
+    });
+    if(!(ed.today||[]).length)f.appendChild(msg(null,"この日の「今日は何の日」はまだありません。"));
+    return f;
+  }
+  function renderArchive(){
+    var f=document.createDocumentFragment();
+    state.toc.forEach(function(t,i){
+      var a=el("a","arch"),p=parts(t.date);
+      a.href=i===0?"#news":"#"+compact(t.date);
+      if(t.date===state.date)a.setAttribute("aria-current","true");
+      var d=el("div","arch-d",p.y+"年"+p.m+"月"+p.d+"日（"+p.wd+"）");
+      d.appendChild(el("span",null,t.titles.length+"本"));
+      a.appendChild(d);a.appendChild(el("p","arch-t",t.titles.slice(0,3).join("／")));
+      f.appendChild(a);
+    });
+    return f;
+  }
+  function render(){
+    renderMast();renderTabs();
+    var main=$("main");main.replaceChildren();
+    if(!state.toc.length){main.appendChild(msg("まだ朝刊がありません","毎朝の自動実行で作成されると、ここに表示されます。"));return;}
+    if(state.view==="archive"){main.appendChild(renderArchive());return;}
+    var ed=state.editions[state.date];
+    if(!ed){var m=msg("この日の号はありません",null),a=el("a",null,"最新号を開く");a.href="#news";m.appendChild(a);main.appendChild(m);return;}
+    main.appendChild(state.view==="history"?renderHistory(ed):renderNews(ed));
+  }
+
+  var modeBtn=$("modeBtn"),mq=window.matchMedia("(prefers-color-scheme: dark)");
+  function isDark(){var m=document.documentElement.getAttribute("data-mode");return m?m==="dark":mq.matches;}
+  function syncMode(){modeBtn.setAttribute("aria-pressed",isDark()?"true":"false");}
+  modeBtn.addEventListener("click",function(){
+    var m=isDark()?"light":"dark";document.documentElement.setAttribute("data-mode",m);
+    try{localStorage.setItem("gyoho-mode",m);}catch(e){}
+    syncMode();
+  });
+  if(mq.addEventListener)mq.addEventListener("change",syncMode);
+  syncMode();
+  window.addEventListener("hashchange",route);
+  route();
+})();
+</script>
+</body>
+</html>
